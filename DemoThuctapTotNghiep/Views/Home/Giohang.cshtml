@@ -1,0 +1,108 @@
+﻿
+@model IEnumerable<DemoThuctapTotNghiep.Models.modeSanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header>
+    <style>
+        .img-card-person {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100px;
+            height: 100px;
+            border-radius: .357rem;
+            object-fit: cover;
+        }
+    </style>
+</header>
+<div class="breadcrumbs_area other_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/Home/Index">home</a></li>
+                        <li>/</li>
+                        <li><a href="/Home/Contact">Shop</a></li>
+                        <li>/</li>
+                        <li><a href="/Home/Chitiet/@ViewBag.masp">Chi tiết sản phẩm</a></li>
+                        <li>/</li>
+                        <li>Giỏ hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+    <table class="table table-hover table-bordered js-copytextarea dataTable no-footer" cellpadding="0" cellspacing="0" border="0" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+        <thead>
+            <tr>
+
+                <th>
+                    Tên sản phẩm
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Giá bán
+                </th>
+                <th>
+                    Hình ảnh
+                </th>
+                <th> Chức năng</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @{ var a = 0;
+                Convert.ToDecimal(a).ToString("#,###");
+            }
+
+            @foreach (var item in Model)
+            {
+                a = a + @item.GiaBan*item.SoLuong;
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+
+
+                    <td>
+                        @item.GiaBan.ToString("#,###") Đ
+
+                    </td>
+
+                    <td>
+                        <img class="img-card-person" src="@item.HinhAnh" />
+                    </td>
+                    <td class="product_remove" style="text-align: center;">
+                        @Html.ActionLink(" ", "DeleteGioHang", new { id = @item.MaSP }, new { @class = "fa fa-trash-o", @title = "Xóa", @style = "font-size: 50px;" })
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    @if (@a != 0)
+    {
+        <h4 style="text-align: right;">Tổng tiền:   @a.ToString("#,### Đ") </h4> }
+    else
+    {
+        <h4 style="text-align: right;">Tổng tiền:   @a Đ </h4>
+    }
+    <div class="container" style="text-align: right;">
+        <a class="button" href="/ADMIN/QuanLyHD/Create">Đặt hàng</a>
+    </div>
+</div>
+
+

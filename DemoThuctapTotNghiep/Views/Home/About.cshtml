@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Liên hệ";
+}
+<div class="breadcrumbs_area other_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/Home/Index">Home</a></li>
+                        <li>/</li>
+                        <li>Liên hệ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contact_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="contact_message content">
+                    <h3>Thông tin liên hệ</h3>
+                    <p>Chào mừng bạn đến với shop của chúng tôi</p>
+                    <ul>
+                        <li><i class="fa fa-fax"></i>  Address : Bắc giang</li>
+                        <li><i class="fa fa-phone"></i> <a href="#">0857290966</a></li>
+                        <li><i class="fa fa-envelope-o"></i> anhhieuk50@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="contact_message form">
+                    <h3>LIÊN HỆ QUA HỆ THỐNG WEBSITE</h3>
+                    <form id="contact-form" method="POST" action="assets/mail.php">
+                        <p>
+                            <label> Your Name (required)</label>
+                            <input name="name" placeholder="Name *" type="text">
+                        </p>
+                        <p>
+                            <label>  Your Email (required)</label>
+                            <input name="email" placeholder="Email *" type="email">
+                        </p>
+                       
+                        <div class="contact_textarea">
+                            <label>  Your Message</label>
+                            <textarea placeholder="Message *" name="message" class="form-control2"></textarea>
+                        </div>
+                        <button type="submit"> Send</button>
+                        <p class="form-messege"></p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

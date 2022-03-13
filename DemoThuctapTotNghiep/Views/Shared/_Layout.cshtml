@@ -1,0 +1,306 @@
+﻿
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/CSSS/assets/img/favicon.ico">
+
+    <!-- CSS
+    ========================= -->
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="~/CSSS/assets/css/plugins.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="~/CSSS/assets/css/style.css">
+
+</head>
+<body>
+
+    <div class="offcanvas_menu">
+        <div class="canvas_open">
+            <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+        </div>
+        <div class="offcanvas_menu_wrapper">
+            <div class="canvas_close">
+                <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+            </div>
+            <div class="welcome_text">
+                <ul>
+                    <li><span>Chào mừng bạ đã đến với shop </span> </li>
+
+                </ul>
+            </div>
+
+            <div class="top_right">
+                <ul>
+                    @if (HttpContext.Current.Session["hoten"] == null)
+                    {
+                        <li><a href="/ADMIN/DangNhap/Dangnhap">Đăng nhập </a></li>
+                        <li><a href="/ADMIN/DangNhap/Dangky">Đăng ký </a></li>
+                    }
+
+                    else
+                    {
+                        <li class="top_links">
+                            <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                            <ul class="dropdown_links">
+                                <li>
+                                    @Html.ActionLink("Sửa thông tin cá nhân", "Edit", new { id = @Session["id"] })
+
+                                </li>
+                                <li><a href="/ADMIN/DangNhap/Dangxuat">Đăng xuất</a></li>
+                            </ul>
+
+                        </li>
+
+                    }
+                </ul>
+            </div>
+
+            <div class="search_bar">
+                @using (Html.BeginForm("timKiem", "Home", FormMethod.Post))
+                {
+                    <input type="text" placeholder="Thông tin cần tìm kiếm" name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
+
+                    <button type="submit" name="Search" value="" alt="Search" id="searchbutton" title="Search"><i class="ion-ios-search-strong"></i></button>
+                }
+            </div>
+            <div>
+                <li class="active"><a href="/Home/Index">Home </a></li>
+                <li><a href="/Home/Contact">shop </a></li>
+                <li><a href="/Home/About">Liên hệ</a></li>
+
+                @if (HttpContext.Current.Session["kq"] != null)
+                {
+                    <li class="txt_field"><a href="/ADMIN/DangNhap/Index">Admin</a></li>
+                }
+                else
+                {
+                }
+            </div>
+            <div class="cart_area">
+                <div class="middel_links">
+
+                </div>
+                <div class="cart_link">
+                    <a href="/Home/Giohang"><i class="fa fa-shopping-basket"></i>@ViewBag.soSP item(s)</a>
+                    <!--mini cart-->
+                    <!--mini cart end-->
+                </div>
+            </div>
+
+            <div class="offcanvas_footer">
+                <span><a href="#"><i class="fa fa-envelope-o"></i> anhhieuk50@gmail.com</a></span>
+                <ul>
+                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Offcanvas menu area end-->
+    <!--header area start-->
+    <header class="header_area header_three">
+        <!--header top start-->
+        <div class="header_top">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-12">
+                        <div class="welcome_text">
+                            <ul>
+                                <li><span>Chào mừng bạn đã đến với shop</span> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                        <div class="top_right text-right main_menu">
+
+                            <ul>
+
+                                @if (HttpContext.Current.Session["hoten"] == null)
+                                {
+                                    <li><a href="/ADMIN/DangNhap/Dangnhap">Đăng nhập </a></li>
+                                    <li><a href="/ADMIN/DangNhap/Dangky">Đăng ký </a></li>
+                                }
+
+                                else
+                                {
+                                    <li class="top_links">
+                                        <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                        <ul class="dropdown_links">
+                                            <li>
+                                                @Html.ActionLink("Sửa thông tin cá nhân", "Edit", new { id = @Session["id"] })
+
+                                            </li>
+                                            <li><a href="/ADMIN/DangNhap/Dangxuat">Đăng xuất</a></li>
+                                        </ul>
+
+                                    </li>
+
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--header top start-->
+        <!--header middel start-->
+        <div class="header_middel">
+            <div class="container-fluid">
+                <div class="middel_inner">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4">
+                            <div class="search_bar">
+                                @using (Html.BeginForm("timKiem", "Home", FormMethod.Post))
+                                {
+                                    <input type="text" placeholder="Thông tin cần tìm kiếm" name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" required />
+
+                                    <button type="submit" name="Search" value="" alt="Search" id="searchbutton" title="Search"><i class="ion-ios-search-strong"></i></button>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="logo">
+                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="cart_area">
+                                <div class="cart_link">
+                                    <a href="/Home/Giohang"><i class="fa fa-shopping-basket"></i>@ViewBag.soSP item(s)</a>
+                                    <!--mini cart-->
+                                    <!--mini cart end-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="horizontal_menu">
+                    <div class="left_menu">
+                        <div class="main_menu">
+                            <nav>
+                                <ul>
+                                    <li class="active">
+                                        <a href="/Home/Index">Home <i class="fa fa-angle-down"></i></a>
+
+                                    </li>
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="logo_container">
+                        @* <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>*@
+                    </div>
+                    <div class="right_menu">
+                        <div class="main_menu">
+                            <nav>
+                                <ul>
+                                    <li><a href="#">Specials</a></li>
+                                    <li><a href="#">Sneaker</a></li>
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--header middel end-->
+        <!--header bottom satrt-->
+        <div class="header_bottom sticky-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="main_menu_inner">
+                            <div class="main_menu">
+                                <nav>
+                                    <ul>
+                                        <li class="active"><a href="/Home/Index">Home </a></li>
+                                        <li><a href="/Home/Contact">shop </a></li>
+                                        <li><a href="/Home/About">Liên hệ</a></li>
+
+                                        @if (HttpContext.Current.Session["kq"] != null)
+                                        {
+                                            <li class="txt_field"><a href="/ADMIN/DangNhap/Index">Admin</a></li>
+                                        }
+                                        else
+                                        {
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--header bottom end-->
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <footer class="footer_widgets">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widgets_container contact_us">
+                            <h3>Thông tin liên hệ</h3>
+                            <div class="footer_contact">
+                                <p>Address: Bắc giang</p>
+                                <p>Phone: <a href="#">(+012) 085 729 0966</a> </p>
+                                <p>Email: anhhieuk50@gmail.com</p>
+                                <ul>
+                                    <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#" title="google-plus"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a  href="#" title="facebook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" title="youtube"><i class="fa fa-youtube"></i></a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="copyright_area">
+                            <p> © 2021 <strong> </strong> Phạm Anh Hiếu ❤️  <a href="#" target="_blank"><strong></strong></a></p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/CSSS/assets/js/plugins.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/CSSS/assets/js/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

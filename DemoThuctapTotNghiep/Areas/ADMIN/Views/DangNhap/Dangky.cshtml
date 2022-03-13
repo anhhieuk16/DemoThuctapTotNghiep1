@@ -1,0 +1,101 @@
+﻿@model DemoThuctapTotNghiep.Models.ModeKhachHang
+
+@{
+    ViewBag.Title = "Dangky";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="breadcrumbs_area other_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/Home/Index">Home</a></li>
+                        <li>/</li>
+                        <li>Đăng ký</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-lg-6 " style="margin: auto;">
+    <div class="account_form">
+        <h2 style="text-align: center;">Đăng ký</h2>
+        <form action="/ADMIN/Dangnhap/Dangky" method="post">
+            <div style="color: red;">@ViewBag.messg</div>
+            
+            <p>
+                <label>Tài khoản</label>
+                @Html.EditorFor(model => model.Usename, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Usename, "", new { @class = "text-danger" })
+            </p>
+            <p>
+                <label>Mật Khẩu</label>
+
+                @Html.EditorFor(model => model.pass, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
+
+            </p>
+            <p>
+                <label>Họ và tên</label>
+
+                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+            </p>
+            <p>
+                <label>Địa chỉ</label>
+
+                @Html.DropDownListFor(model => model.DiaChi, ViewBag.DiaChiList as SelectList, "--Chọn địa chỉ--", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+
+            </p>
+            <p>
+                <label>Ngày sinh</label>
+                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+
+            </p>
+            <p>
+                <label>Số điện thoại</label>
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+
+            </p>
+            <p>
+                <label>Số chứng minh nhân dân</label>
+                @Html.EditorFor(model => model.SoCMND, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoCMND, "", new { @class = "text-danger" })
+
+            </p>
+            <p>
+                <label>Nơi cấp</label>
+                @Html.DropDownListFor(model => model.NoiCap, ViewBag.NoiCapList as SelectList, "--Chọn nơi cấp--", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoiCap, "", new { @class = "text-danger" })
+
+            </p>
+            <p>
+                <label>Giới tính</label>
+                @Html.DropDownListFor(model => model.GioiTinh, ViewBag.GioiTinhList as SelectList, "--Chọn giới tính--", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+
+            </p>
+            <div class="login_submit">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6" style="text-align: left;"><button href="/Home/Index"> trở về</button></div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <button type="submit" >Đăng ký</button></div>
+
+                    </div>
+                </div>
+                
+
+        </form>
+    </div>
+</div>

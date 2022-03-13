@@ -1,0 +1,112 @@
+﻿@model DemoThuctapTotNghiep.Models.ModeKhachHang
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="tile">
+
+            <h3 class="tile-title">Sửa thông tin </h3>
+            <div class="tile-body">
+                
+                @using (Html.BeginForm("Edit", "KhachHang", "post"))
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Usename, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.pass, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.pass, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Chức vụ </label>                            <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Chucvu, ViewBag.ChucVuList as SelectList, "--Chọn chức vụ--", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Chucvu, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Họ và tên </label>                            <div class="col-md-10">
+                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Địa chỉ </label>                            <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.DiaChi, ViewBag.DiaChiList as SelectList, "--Chọn địa chỉ--", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Ngày sinh </label>
+                        <div class="col-md-10">
+                            @*@Html.TextBoxFor(model => model.NgaySinh, "{0:dd/MM/yyyy}")*@
+                            @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Số điện thoại</label>                            <div class="col-md-10">
+                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Số chứng minh nhân dân </label>                            <div class="col-md-10">
+                            @Html.EditorFor(model => model.SoCMND, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SoCMND, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label">Nới cấp số chứng minh nhân dân </label>                            <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.NoiCap, ViewBag.NoiCapList as SelectList, "--Chọn nơi cấp--", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NoiCap, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Giới tính </label>                            <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.GioiTinh, ViewBag.GioiTinhList as SelectList, "--Chọn giới tính--", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Lưu" class="btn btn-save" />
+                        <a class="btn btn-cancel" href="/ADMIN/KhachHang/Index">Hủy bỏ</a>
+
+                    </div>
+                </div>
+
+
+                }
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

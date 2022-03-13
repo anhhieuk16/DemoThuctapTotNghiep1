@@ -1,0 +1,83 @@
+﻿@model DemoThuctapTotNghiep.Models.ModelHoaDon
+
+@{
+    ViewBag.Title = "Đặt hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="breadcrumbs_area other_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/Home/Index">Home</a></li>
+                        <li>/</li>
+                        <li><a href="/Home/Contact">Shop</a></li>
+                        <li>/</li>
+                        <li><a href="/Home/Giohang">Giỏ hàng</a></li>
+                        <li>/</li>
+                        <li>Đặt hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-6 " style="margin: auto;">
+    <div class="account_form">
+        <h2 style="text-align: center;">Đặt hàng</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <input id="HoTen" name="HoTen" value="@Session["id"]" type="hidden" />
+
+
+        <input id="TenSP" name="TenSP" value="@Session["maSP"]" type="hidden" />
+
+
+        <div class="form-group">
+            <label class="control-label">Địa chỉ nơi nhận </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NoiNhan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoiNhan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Hình thức thanh toán </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.HinhThucTT, ViewBag.HinhthucTTList as SelectList, "--Hình thức thanh toán--", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HinhThucTT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <input id="Trangthai" name="Trangthai" value="1" type="hidden" />
+        <input id="SLsP" name="SLsP" value="@Session["sl"]" type="hidden" />
+        <br />
+        <div class="login_submit">
+            <div class="row">
+                <div class="col-lg-6 col-md-6" style="text-align: left;"><a class="button" style="color: #fff;" href="/Home/Index">Hủy bỏ</a></div>
+
+                <div class="col-lg-6 col-md-6"><button type="submit" value="Lưu" class="button" >Lưu</button></div>
+
+            </div>
+
+        </div>
+       
+    </div>
+        }
+    </div>
+</div>
+
+
+
+

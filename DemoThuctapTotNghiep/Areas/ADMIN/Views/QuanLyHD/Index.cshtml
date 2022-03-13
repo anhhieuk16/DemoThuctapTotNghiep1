@@ -1,0 +1,116 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DemoThuctapTotNghiep.Models.ModelHoaDon>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="~/CSSS/assets/css/plugins.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="~/CSSS/assets/css/style.css">
+</head>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+
+                <div class="row element-button">
+                    <div class="col-sm-2">
+
+                        <a class="btn btn-add btn-sm" href="/ADMIN/QuanLyHD/Create" title="Thêm">
+                            <i class="fas fa-plus"></i>
+                            Tạo mới hóa đơn
+                        </a>
+                    </div>
+
+                </div>
+                <div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+                    <table class="table table-hover table-bordered js-copytextarea dataTable no-footer" cellpadding="0" cellspacing="0" border="0" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Mã hóa đơn
+                                </th>
+                                <th>
+                                    Họ tên
+                                </th>
+                                <th>
+                                    Tên sản phẩm
+                                </th>
+                                <th>
+                                    Số lượng sản phẩm
+                                </th>
+                                <th>
+                                    Tổng tiền
+                                </th>
+                                <th>
+                                    Hình thức thanh toán
+                                </th>
+                                <th>
+                                    Nơi nhận sản phẩm
+                                </th>
+                                <th>
+                                    Trạng thái hóa đơn
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                var Tong = item.SLsP * item.GiasP;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaHD)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HoTen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenSP)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SLsP)
+                                    </td>
+                                    <td>
+                                        @Tong.ToString("#,###") Đ
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HinhThucTT)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NoiNhan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Trangthai)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(" ", "Edit", new { id = item.MaHD }, new { @class = "fas fa-edit", @title = "Sửa" }) |
+
+                                        @Html.ActionLink(" ", "Delete", new { id = item.MaHD }, new { @class = "fas fa-trash-alt", @title = "Xóa" })
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="shop_toolbar t_bottom">
+                <div class="pagination">
+                    @Html.PagedListPager(Model, sotrang => Url.Action("Index", new { page = sotrang }))
+                </div>
+               
+            </div>
+    </div>
+</div>
+

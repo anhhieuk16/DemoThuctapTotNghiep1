@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Biểu Đồ Sản phẩm'],
+                ['Sản phẩm hết hàng', @ViewData["hethang"] ],
+                ['Sản phẩm còn hàng', @ViewData["Conhang"]],
+
+            ]);
+
+            var options = {
+                title: 'Biểu đồ Sản phẩm'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Biểu Đồ hóa đơn'],
+                ['Hóa đơn đã xử lý', @ViewData["DaXL"]  ],
+                ['Hóa đơn đang xử lý',@ViewData["DangXL"] ],
+                ['Đang giao hàng',@ViewData["DangGH"] ],
+
+            ]);
+
+            var options = {
+                title: 'Biểu đồ hóa đơn'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+
+    <div class="row">
+        <!--Left-->
+        <div class="col-md-12 col-lg-6">
+            <div class="row">
+                <!-- col-6 -->
+                <div class="col-md-12">
+                    <div class="tile">
+                        <h3 class="tile-title">Biểu đồ sản phẩm</h3>
+                        <div id="piechart"></div>
+                        <!-- / div trống-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--END left-->
+        <!--Right-->
+        <div class="col-md-12 col-lg-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tile">
+                        <h3 class="tile-title">Biểu đồ hóa đơn</h3>
+                        <div id="piechart2"></div>
+                        <!-- / div trống-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--END right-->
+    </div>
+</body>

@@ -1,0 +1,141 @@
+﻿@model DemoThuctapTotNghiep.Models.modeSanPham
+@{
+    ViewBag.Title = "Chitiet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="breadcrumbs_area product_bread">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/Home/Index">home</a></li>
+                        <li>/</li>
+                        <li>
+                            <a href="/Home/Contact">Shop</a>
+                        </li>
+                        <li>/</li>
+                        <li>Chi tiết sản phẩm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product_details">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5">
+                <div class="product-details-tab">
+
+                    <div id="img-1" class="zoomWrapper single-zoom">
+                        <a href="#">
+                            <img style="max-width: 70%;" src="@Model.HinhAnh" alt="big-1">
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7">
+                <div class="product_d_right">
+                    <form action="/Home/ThemGiohang" method="post">
+                        <input id="MaSP" name="MaSP" value="@Model.MaSP" type="hidden"/>
+                        
+                        
+                        
+                        <h1>@Model.TenSP</h1>
+                        <div class=" product_ratting">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                <li class="review"><a href="#"> 1 review </a></li>
+
+                            </ul>
+                        </div>
+                        <div class="product_price">
+                            <span class="current_price">@Model.GiaBan.ToString("#,###") Đ</span>
+                        </div>
+                        <div class="product_desc">
+                            <p>Tình trạng: Hàng mới 100%</p>
+                        </div>
+                        <div class="product_variant quantity">
+                            <input id="SoLuong" name="SoLuong" min="1" max="100" value="1" type="number">
+
+                            @*@Html.ActionLink("Thêm vào giỏ hàng", "ThemGiohang", new { id = @Model.MaSP }, new { @class = "button example1" })*@
+                        <div class="col-lg-6 col-md-6">
+                            <button type="submit" class="button" style="background: #ff6a28;">Thêm vào giỏ hàng</button>
+                            </div>
+                        </div>
+                        <div class=" product_d_action">
+                            <ul>
+                                <li><a href="#" title="Add to wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wish List</a></li>
+                                <li><a href="#" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i> Compare this Product</a></li>
+                            </ul>
+                        </div>
+
+                    </form>
+                    <div class="priduct_social">
+                        <h3>Share on:</h3>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                            <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="product_d_info">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_d_inner">
+                    <div class="product_info_button">
+                        <ul class="nav" role="tablist">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Thông tin chi tiết sản phẩm</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="info" role="tabpanel">
+                            <div class="product_info_content">
+                                <p>@Model.MoTaSP</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function giatri() {
+        //1.  lấy giá trị trong thẻ input người dùng nhập
+        var x = document.querySelector('#Soluongsp').value;
+        
+
+        return x;
+
+    }
+
+</script>

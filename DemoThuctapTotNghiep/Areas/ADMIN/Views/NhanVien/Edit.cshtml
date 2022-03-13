@@ -1,0 +1,121 @@
+﻿@model DemoThuctapTotNghiep.Models.modeNhanVien
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="tile">
+
+            <h3 class="tile-title">Sửa thông tin nhân viên</h3>
+            <div class="tile-body">
+                <div class="row element-button">
+                    <div class="col-sm-2">
+                        <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><b><i class="fas fa-folder-plus"></i> Tạo chức vụ mới</b></a>
+                    </div>
+
+                </div>
+                @using (Html.BeginForm("Edit", "NhanVien", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                               <div class="col-md-10">
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.IDNhanVien, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                                </div>
+                            </div>
+                            </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Họ và tên </label>                            
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label class="control-label">Số điện thoại </label>                           
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label class="control-label">Số CMND </label>                           
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.SoCMND, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SoCMND, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                            <label class="control-label">Giới tính </label>                            
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.GioiTinh, ViewBag.GioTinhList as SelectList, "--Chọn  giới tính--", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label class="control-label">Bằng cấp </label>   
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.BangCap, ViewBag.BangCapList as SelectList, "--Chọn bằng cấp--", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BangCap, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Chức vụ </label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.ChucVu, ViewBag.ChucVuList as SelectList, "--Chọn chức vụ--", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Tình trạng hôn nhân </label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.TRHonNhan, ViewBag.HonNhanList as SelectList, "--Chọn tình trạng hôn nhân--", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TRHonNhan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Hình ảnh</label>
+                                <div class="col-md-10">
+                                    <div>
+                                        <img id="output" src="@Model.HinhAnh" style="width:20%" />
+                                    </div>
+
+                                    <input type="file" class="upload" name="image" id="fileUpload" onchange="loadFile(event)" ; /><br />
+
+                                    @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div>
+                                <input type="submit" value="Lưu" class="btn btn-save" />
+                                <a class="btn btn-cancel" href="/ADMIN/NhanVien/Index">Hủy bỏ</a>
+
+                            </div>
+                        </div>
+                     
+                       
+
+
+                 }
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,161 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DemoThuctapTotNghiep.Models.modeSanPham>
+
+@{
+    ViewBag.Title = "Shop";
+}
+
+<style>
+    .p_tt {
+        display: -webkit-box;
+        max-height: 3.2rem;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        -webkit-line-clamp: 2;
+        line-height: 1.6rem;
+    }
+</style>
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/Home/Index">home</a></li>
+                        <li>/</li>
+                        <li>shop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shop_area shop_reverse">
+    <div class="container">
+        <div class="shop_inner_area">
+            <div class="row">
+                <div class="col-lg-3 col-md-12">
+                    <!--sidebar widget start-->
+                    <div class="sidebar_widget">
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <hr />
+                        <div class="widget_list widget_categories">
+                            <h2>Thể loại sản phẩm</h2>
+                            <ul>
+                                <li><a id="0" href="/Home/Contact">Tất cả</a> </li>
+                                <li><a id="1" class="" href="/Home/hienthi/1">Bàn học</a> </li>
+                                <li><a id="2" class="" href="/Home/hienthi/2">Ghế</a> </li>
+                                <li><a id="3" class="" href="/Home/hienthi/3">Giá đỡ</a> </li>
+                                <li><a id="4" class="" href="/Home/hienthi/4">Bàn trang điểm</a> </li>
+                                <li><a id="5" class="" href="/Home/hienthi/5">Giường ngủ</a> </li>
+                                <li><a id="6" class="" href="/Home/hienthi/6">Tủ </a> </li>
+                                <li><a id="7" class="" href="/Home/hienthi/7">Bàn thông minh</a> </li>
+                                <li><a id="8" class="" href="/Home/hienthi/8">Bàn ăn</a> </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!--sidebar widget end-->
+                </div>
+                <div class="col-lg-9 col-md-12">
+                    <!--shop wrapper start-->
+                    <!--shop toolbar start-->
+                    <div class="shop_title">
+                        <h1>shop</h1>
+                    </div>
+                    <div class="shop_toolbar_wrapper">
+                        <div class="shop_toolbar_btn">
+
+                            @*                            <button data-role="grid_3" type="button" class="btn-grid-3" data-toggle="tooltip" title="" data-original-title="3"></button>
+                            *@
+                            <button data-role="grid_4" type="button" class="btn-grid-4 active" data-toggle="tooltip" title="" data-original-title="4"></button>
+
+                            <button data-role="grid_5" type="button" class="btn-grid-5" data-toggle="tooltip" title="" data-original-title="5"></button>
+
+                            <button data-role="grid_list" type="button" class="btn-list" data-toggle="tooltip" title="" data-original-title="List"></button>
+                        </div>
+
+                    </div>
+                    <!--shop toolbar end-->
+
+                    <div class="row shop_wrapper grid_4">
+                        @foreach (var item in Model)
+                        {
+
+                            <div class="col-md-4 col-sm-6 col-lg-3" id="@item.DanhMucSP">
+                                <div class="single_product">
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="/Home/Chitiet/@item.MaSP">
+
+                                            <img src="@item.HinhAnh" alt="">
+                                        </a>
+                                        <a class="secondary_img" href="/Home/Chitiet/@item.MaSP">
+                                            <img src="@item.HinhAnh"
+                                                 alt="">
+                                        </a>
+
+                                        <div class="quick_button">
+                                            @Html.ActionLink("Xem sản phẩm", "Chitiet", new { id = item.MaSP })
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="product_content grid_content">
+                                        <h3><a href="/Home/Chitiet/@item.MaSP">@item.TenSP </a></h3>
+                                        <span class="current_price">@item.GiaBan.ToString("#,###") Đ</span>
+
+                                    </div>
+
+
+                                    <div class="product_content list_content">
+                                        <h3><a href="/Home/Chitiet/@item.MaSP">@item.TenSP</a></h3>
+                                        <div class="product_ratting">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product_price">
+                                            <span class="current_price">@item.GiaBan.ToString("#,###") Đ</span>
+
+                                        </div>
+                                        <div class="product_desc">
+                                            <p class="p_tt">@item.MoTaSP</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        }
+
+
+                    </div>
+
+                    <div class="shop_toolbar t_bottom">
+                        <div class="pagination">
+                            @Html.PagedListPager(Model, sotrang => Url.Action("Contact", new { page = sotrang }))
+                        </div>
+                    </div>
+                    <!--shop toolbar end-->
+                    <!--shop wrapper end-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
